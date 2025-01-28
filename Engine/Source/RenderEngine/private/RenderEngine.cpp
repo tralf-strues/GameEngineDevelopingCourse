@@ -40,7 +40,7 @@ namespace GameEngine::Render
 
 	RenderEngine::RenderEngine()
 	{
-		m_rhi = HAL::RHIHelper::CreateRHI("D3D12");
+		m_rhi = HAL::RHIHelper::CreateRHI("Vulkan");
 
 		OnResize();
 
@@ -117,6 +117,10 @@ namespace GameEngine::Render
 		m_rhi->GetCommandQueue()->ExecuteCommandLists({ m_rhi->GetCommandList() });
 
 		m_rhi->GetFence()->Sync(m_rhi->GetCommandQueue());
+	}
+
+	RenderEngine::~RenderEngine()
+	{
 	}
 
 	void RenderEngine::Update(size_t frame)
